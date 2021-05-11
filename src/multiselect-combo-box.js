@@ -361,8 +361,22 @@ import './multiselect-combo-box-input.js';
       const index = this._findIndex(item, this.selectedItems, this.itemIdPath);
       if (index !== -1) {
         update.splice(index, 1);
+        this.dispatchEvent(new CustomEvent('item-removed', {
+          bubbles: true,
+          detail: {
+            item: item,
+            base: update
+          }
+        }));
       } else {
         update.push(item);
+        this.dispatchEvent(new CustomEvent('item-added', {
+          bubbles: true,
+          detail: {
+            item: item,
+            base: update
+          }
+        }));
       }
 
       if (!selectedItem) {
