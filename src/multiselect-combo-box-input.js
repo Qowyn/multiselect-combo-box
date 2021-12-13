@@ -29,7 +29,7 @@ import {MultiselectComboBoxMixin} from './multiselect-combo-box-mixin.js';
           <template is="dom-if" if="[[!compactMode]]" restamp="">
             <template is="dom-repeat" items="[[items]]">
               <div part="token">
-                <div part="token-label">[[_getItemLabel(item, itemLabelPath)]]</div>
+                <div part="token-label">[[_getItemLabel(item, itemLabelPath, itemSelectedLabelPath)]]</div>
                 <div part="token-remove-button" role="button" on-click="_removeToken"></div>
               </div>
             </template>

@@ -86,7 +86,7 @@ import './multiselect-combo-box-input.js';
           <label part="label">[[label]]</label>
 
           <div part="readonly-container" hidden\$="[[!readonly]]">
-            [[_getReadonlyValue(selectedItems, itemLabelPath, compactMode, readonlyValueSeparator)]]
+            [[_getReadonlyValue(selectedItems, itemLabelPath, itemSelectedLabelPath, compactMode, readonlyValueSeparator)]]
           </div>
 
           <vaadin-combo-box-light
@@ -110,6 +110,7 @@ import './multiselect-combo-box-input.js';
               class="input"
               part="input-field"
               placeholder="[[placeholder]]"
+              item-selected-label-path="[[itemSelectedLabelPath]]"
               item-label-path="[[itemLabelPath]]"
               items="[[selectedItems]]"
               compact-mode="[[compactMode]]"
@@ -330,7 +331,7 @@ import './multiselect-combo-box-input.js';
         this._sortSelectedItems(selectedItems);
       }
 
-      this.compactMode && (this.title = this._getDisplayValue(selectedItems, this.itemLabelPath, ', '));
+      this.compactMode && (this.title = this._getDisplayValue(selectedItems, this.itemLabelPath, this.itemSelectedLabelPath, ', '));
 
       // manually force a render
       this.$.comboBox.$.overlay._selectedItem = {};
@@ -452,11 +453,11 @@ import './multiselect-combo-box-input.js';
     _getReadonlyValue(selectedItems, itemLabelPath, compactMode, readonlyValueSeparator) {
       return compactMode ?
         this._getCompactModeLabel(selectedItems) :
-        this._getDisplayValue(selectedItems, itemLabelPath, readonlyValueSeparator);
+        this._getDisplayValue(selectedItems, itemLabelPath, itemSelectedLabelPath, readonlyValueSeparator);
     }
 
-    _getDisplayValue(selectedItems, itemLabelPath, valueSeparator) {
-      return selectedItems.map(item => this._getItemLabel(item, itemLabelPath)).join(valueSeparator);
+    _getDisplayValue(selectedItems, itemLabelPath, itemSelectedLabelPath, valueSeparator) {
+      return selectedItems.map(item => this._getItemLabel(item, itemLabelPath, itemSelectedLabelPath)).join(valueSeparator);
     }
 
     get inputElement() {

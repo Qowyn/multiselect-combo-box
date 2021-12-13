@@ -55,6 +55,11 @@ export const MultiselectComboBoxMixin = (base) => class extends base {
       compactModeLabelGenerator: Function,
 
       /**
+       * The item property to be used as the `label` for selected items in input.
+       */
+      itemSelectedLabelPath: String,
+
+      /**
        * The item property to be used as the `label` in combo-box.
        */
       itemLabelPath: String,
@@ -101,8 +106,10 @@ export const MultiselectComboBoxMixin = (base) => class extends base {
    * Returns the item display label.
    * @protected
    */
-  _getItemLabel(item, itemLabelPath) {
-    return item && item.hasOwnProperty(itemLabelPath) ? item[itemLabelPath] : item;
+  _getItemLabel(item, itemLabelPath, itemSelectedLabelPath) {
+    if (!item) return item;
+    if (itemSelectedLabelPath && item.hasOwnProperty(itemSelectedLabelPath)) return item[itemSelectedLabelPath];
+    return item.hasOwnProperty(itemLabelPath) ? item[itemLabelPath] : item;
   }
 
   /**

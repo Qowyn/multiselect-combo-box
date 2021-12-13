@@ -15,6 +15,7 @@ declare interface MultiselectComboBoxMixin<T = unknown> {
   hasLabel?: boolean;
   compactMode?: boolean;
   compactModeLabelGenerator: (selectedItems: T[]) => string;
+  itemSelectedLabelPath: string;
   itemLabelPath: string;
   itemValuePath: string;
   itemIdPath: string;
