@@ -450,7 +450,7 @@ import './multiselect-combo-box-input.js';
       }
     }
 
-    _getReadonlyValue(selectedItems, itemLabelPath, compactMode, readonlyValueSeparator) {
+    _getReadonlyValue(selectedItems, itemLabelPath, itemSelectedLabelPath, compactMode, readonlyValueSeparator) {
       return compactMode ?
         this._getCompactModeLabel(selectedItems) :
         this._getDisplayValue(selectedItems, itemLabelPath, itemSelectedLabelPath, readonlyValueSeparator);
